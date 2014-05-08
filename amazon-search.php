@@ -80,3 +80,7 @@ class Amazon_Search
 		}
 	}
 }
+
+
+$a = new Amazon_search();
+$a->get_view("iPad","All");

@@ -89,7 +89,7 @@ else
 					{
 						//$array[$i]['array'] = pq($item)->html();
 						$array[$i]['num'] = $i + 1;
-						$array[$i]['name'] = htmlentities(pq($item)->find('span.productTitle strong a')->html(), ENT_COMPAT|ENT_HTML401, 'UTF-8', FALSE);
+						$array[$i]['name'] = htmlentities(pq($item)->find('span.productTitle strong a')->html(), ENT_QUOTES|ENT_HTML401|ENT_SUBSTITUE, "UTF-8", FALSE);
 						$array[$i]['link'] = pq($item)->find('span.productTitle a')->attr('href');
 						$array[$i]['old-price'] = pq($item)->find('span.strikeprice')->html();
 						$array[$i]['new-price'] = pq($item)->find('span.wlPriceBold strong')->html();
@@ -114,7 +114,7 @@ else
 				//loop through items
 				foreach($items as $item)
 				{
-					$name = trim(htmlentities(pq($item)->find('a[id^="itemName_"]')->html(), ENT_COMPAT|ENT_HTML401, 'UTF-8', FALSE));
+					$name = trim(htmlentities(pq($item)->find('a[id^="itemName_"]')->html(), ENT_COMPAT|ENT_HTML401, "UTF-8", FALSE));
 					$link = pq($item)->find('a[id^="itemName_"]')->attr('href');
 
 					if(!empty($name) && !empty($link))
