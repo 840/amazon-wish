@@ -3,9 +3,9 @@
 class Amazon_Search
 {
 
-	public $access_key_id = 'AKIAJG6TAO6WJQ2NRHBA';
-	public $secret_access_key = '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';
-	public $associateTag = 'nyarlatlo-22';
+	private $access_key_id = 'AKIAJG6TAO6WJQ2NRHBA';
+	private $secret_access_key = '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';
+	private $associateTag = 'nyarlatlo-22';
 
 	private function urlencode_rfc3986($str)
 	{
@@ -83,4 +83,4 @@ class Amazon_Search
 
 
 $a = new Amazon_search();
-$a->get_view("iPad","All");
+$a->get_view("wifi","All");
