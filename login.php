@@ -8,23 +8,21 @@ $sConsumerKey = "AbQLk4gVwV1gs94YmTtw";
 
 $sConsumerSecret = "EZrzbXcoW1f9D3e0xLvBYSa5Fz25ztWPZo1SUr8yic";
 
-$sCallBackUrl = '192.168.33.10/amazon-wish/callback.php';
+$sCallBackUrl = '133.208.22.43/amazon-wish/callback.php';
 
 if((isset($_SESSION['oauthToken']) && $_SESSION['oauthToken'] !== NULL) && (isset($_SESSION['oauthTokenSecret']) && $_SESSION['oauthTokenSecret'] !== NULL)){
 
     $sUserId = $_SESSION['userId'];
     $sScreenName = $_SESSION['screenName'];
 
-//    echo $sUserId;
-//    echo $sScreenName;
+    echo $sUserId;
+    echo $sScreenName;
 
 }else{
 
-    //OAuthオブジェクト生成
     $oOauth = new TwitterOAuth($sConsumerKey,$sConsumerSecret);
     $oOauthToken = $oOauth->getRequestToken($sCallBackUrl);
 
-    //セッション格納
     $_SESSION['requestToken'] = $sToken = $oOauthToken['oauth_token'];
     $_SESSION['requestTokenSecret']=
         $oOauthToken['oauth_token_secret'];

@@ -2,6 +2,7 @@
 session_start();
 
 require_once('./twitteroauth/twitteroauth.php');
+require_once('./setting_edit.php');
 $sConsumerKey = "AbQLk4gVwV1gs94YmTtw";
 $sConsumerSecret = "EZrzbXcoW1f9D3e0xLvBYSa5Fz25ztWPZo1SUr8yic";
 
@@ -20,10 +21,14 @@ $oOauth = new TwitterOAuth($sConsumerKey,$sConsumerSecret,$_SESSION['requestToke
 $oAccessToken = $oOauth->getAccessToken($sVerifier);
 
 //取得した値をSESSIONに格納
-$_SESSION['oauthToken'] = 			$oAccessToken['oauth_token'];
-$_SESSION['oauthTokenSecret'] = 	$oAccessToken['oauth_token_secret'];
-$_SESSION['userId'] = 				$oAccessToken['user_id'];
-$_SESSION['screenName'] = 			$oAccessToken['screen_name'];
+$_SESSION['oauthToken'] = $oAccessToken['oauth_token'];
+$_SESSION['oauthTokenSecret'] = $oAccessToken['oauth_token_secret'];
+$_SESSION['userId'] = $oAccessToken['user_id'];
+$_SESSION['screenName'] = $oAccessToken['screen_name'];
+
+if(!isUserExist($_SESSION['userId'])){
+	createUser($_SESSION['userId'],$_SESSION['screenName']);
+}
 
 //loginページへリダイレクト
 header("Location: index.php");

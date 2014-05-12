@@ -1,16 +1,13 @@
 <?php
 
-
 session_start();
 
 require_once('./setting_edit.php');
 require_once('./getUserData.php');
-
 $userId = $_SESSION['userId'];
 $screenName = $_SESSION['screenName'];
 
-$userArray = getUserArray();
-$userIDArray = getUserIDArray();
+
 
 ?>
 
@@ -20,7 +17,7 @@ $userIDArray = getUserIDArray();
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Amazon-wish</title>
+    <title>test</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -52,48 +49,44 @@ $userIDArray = getUserIDArray();
             </div>
         </div>
     </div>
-
-
-
-    <div class="container">
-
-
+    <div class="container" >
+        <div class="page-header"><h4>設定</h4></div>
         <?php
-        foreach ($userIDArray as $userID) {
-            $wishcount = getWishCount($userID);
-            $wishIDArray = getWishArray($userID);
-            ?>
-            <div class="panel-group" id="accordion">
-              <div class="panel panel-info">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <?php
-                    print '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse'.getNamefromID($userID).'">';
-                    print getNamefromID($userID)."のほしいものリスト";
-                    print '<a href="#"><span class="badge">'.$wishcount.'</span></a>';
-                    ?>
-                </a>
-            </h4>
-        </div>
-        <?php print '<div id="collapse'.getNamefromID($userID).'" class="panel-collapse collapse in">';
+        echo "screenName:".$screenName;
+        $wishIDArray = getWishArray($userId);
+
         foreach ($wishIDArray as $wishID) {
-            print "<div class='panel-body'>";
-            print "<a href = './wish_view.php?wishID=".$wishID."'>".$wishID."</a>";
+            print "<form role='form' action='deleteWish.php' method = 'post'>";
+            print "<div class='input-group'>";
+            print "<div class='form-inline'>";
+            print "<input type='text' name ='wishID' class='form-control' readonly = 'readonly' value = '".$wishID."'>";
+            print "<input class = 'btn btn-danger' type='submit' value = 'delete'></input>";
+            print "</div>";
+            print "</form>";
             print "</div>";
         }
         ?>
-    </div>
-</div>
 
-</div>
-<?php } ?>
+        <label for="addWish">追加したいほしいものリストのID</label>
 
 
-</div>
+        <form role="form" action="addWish.php" method = "post" >
+            <div class="input-group">
+                <div class="form-inline">
+                    <input type="text" name = "wishID" class="form-control">
+                    <input class="btn btn-primary" type="submit" value="add"></input>
+                </div>
+            </form>
+        </div><!-- /input-group -->
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+
+
+
+    </div> <!-- container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
