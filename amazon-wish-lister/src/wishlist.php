@@ -13,6 +13,7 @@
  */
 error_reporting(0);
 set_time_limit(60);
+
 require_once('phpquery.php');
 
 //?id=YOUR_AMAZON_ID
@@ -40,6 +41,8 @@ else $sort = 'sort=date-added';
 $baseurl = 'http://www.amazon.co.jp';
 $content = phpQuery::newDocumentFile("$baseurl/registry/wishlist/$amazon_id?$reveal&$sort&layout=standard");
 $i = 0;
+
+
 
 if($content == '')
 {
@@ -170,6 +173,4 @@ function xml_ecode($array) {
 if($_REQUEST['format'] == 'json') { echo json_encode($array); }
 elseif($_REQUEST['format'] == 'xml') { echo xml_ecode($array); }
 elseif($_REQUEST['format'] == 'array') { print_r($array); }
-else { echo json_encode($array); }
-
-?>
+else { echo json_encode($array);}

@@ -4769,7 +4769,7 @@ $proxy = array(
 'request_fulluri' => true,
 ),
 );
-$proxy_context = stream_context_create($proxy);
+//$proxy_context = stream_context_create($proxy);
 
 		$documentID = self::createDocumentWrapper(
 			file_get_contents($file), $contentType

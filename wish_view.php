@@ -5,7 +5,7 @@ class Amazon_wish{
 
 	// public $query ='4DXR1E475D8';
 	private $query;
-	private $file ='http://133.208.22.43/amazon-wish/amazon-wish-lister/src/wishlist.php?id=';
+	private $file ='http://192.168.33.10/amazon-wish/amazon-wish-lister/src/wishlist.php?id=';
 
 	function __construct($id){
 		$this->query = $id;
